@@ -28,8 +28,8 @@ public class TCC extends MethodBasedMetricTemplate {
 
 	public float calculate(AbstractTypeDeclaration type, List<MethodDeclaration> methods) {
 		List<MethodDeclaration> methodList = filterMethods(methods);
-		int n = methodList.size();
-		int npc = (n * (n - 1)) / 2; // Number of possible connected methods
+		int n = methodList.size() - 1;
+		int npc = (n * (n + 1)) / 2; // Number of possible connected methods
 		int ndc = 0; // number of directly connected methods
 
 		for (int i = 0; i < n; i++) {
@@ -63,7 +63,8 @@ public class TCC extends MethodBasedMetricTemplate {
 				String exp = stm.getExpression();
 				String type = exp.substring(0, exp.lastIndexOf("."));
 				String field = exp.substring(exp.lastIndexOf(".") + 1);
-				if (currType.getName().equals(type))
+				String currTypeName = currType.getName();
+				if (currTypeName.equals(type))
 					accessedFields.add(field);
 			} else if (stm.getNodeType().equals(NodeType.METHOD_INVOCATION)) {
 				String exp = stm.getExpression();

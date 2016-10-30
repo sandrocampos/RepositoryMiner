@@ -1,4 +1,3 @@
-
 package org.repositoryminer.metric;
 
 public interface MetricId {

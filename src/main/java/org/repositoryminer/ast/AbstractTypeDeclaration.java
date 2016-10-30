@@ -37,5 +37,4 @@ public class AbstractTypeDeclaration {
 	public void setName(String name) {
 		this.name = name;
 	}
-
 }
